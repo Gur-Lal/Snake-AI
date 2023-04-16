@@ -1,6 +1,3 @@
-#Gur & Bilal 
-#adding another comment
-
 import pygame,sys,random,time
 from pygame.math import Vector2
 
