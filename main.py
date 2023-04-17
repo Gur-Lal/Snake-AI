@@ -1,6 +1,10 @@
 import pygame,sys,random,time
 from pygame.math import Vector2
 
+#prepare for trouble
+#and make it double
+#incoming comment! -J
+
 class SNAKE:
     def __init__(self):
         self.body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)]
