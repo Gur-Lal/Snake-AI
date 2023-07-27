@@ -99,7 +99,7 @@ class FRUIT:
         self.pos = Vector2(self.x, self.y)
 
     def draw_fruit(self):
-        fruit_rect = pygame.Rect(int(self.pos.x * cell_size), int(self.pos.y * cell_size), cell_size, cell_size)
+        fruit_rect = pygame.Rect(int(self.pos.x * cell_size)-5, int(self.pos.y * cell_size)-7, cell_size, cell_size)
         screen.blit(apple, fruit_rect)
     
     def randomize(self):
@@ -229,7 +229,7 @@ pygame.display.set_icon(icon)
 pygame.mixer.pre_init(44100,-16,2,512)
 pygame.init()
 cell_size = 30
-cell_number =20
+cell_number = 20
 t0=time.time()
 delay_time = 0.05
 screen = pygame.display.set_mode((cell_number*cell_size,cell_number*cell_size))
