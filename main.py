@@ -1,4 +1,4 @@
-import pygame,sys,random,time, gradio as gr
+import pygame,sys,random,time
 from pygame.math import Vector2
 
 class SNAKE:
