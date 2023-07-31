@@ -1,8 +1,9 @@
 import pygame
 import random
+import asyncio
+import numpy as np
 from enum import Enum
 from collections import namedtuple
-import numpy as np
 
 pygame.init()
 
