@@ -1,4 +1,4 @@
-import pygame,sys,random,time
+import pygame,sys,random,time,asyncio
 from pygame.math import Vector2
 
 class SNAKE:
@@ -230,7 +230,6 @@ pygame.mixer.pre_init(44100,-16,2,512)
 pygame.init()
 cell_size = 30
 cell_number = 20
-t0=time.time()
 delay_time = 0.05
 screen = pygame.display.set_mode((cell_number*cell_size,cell_number*cell_size))
 clock = pygame.time.Clock()
@@ -243,36 +242,42 @@ pygame.time.set_timer(SCREEN_UPDATE, 50)
 
 main_game = MAIN()
 
-while True:
-    for event in pygame.event.get(): 
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit() 
-        if event.type == SCREEN_UPDATE:
-            main_game.update()
-        if event.type == pygame.KEYDOWN: 
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
-                if main_game.snake.direction.y != 1:
-                    if time.time()-t0 >= delay_time:
-                        main_game.snake.direction = Vector2(0, -1)
-                        t0=time.time()
-            elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                if main_game.snake.direction.y != -1:
-                    if time.time()-t0 >= delay_time:
-                        main_game.snake.direction = Vector2(0, 1)
-                        t0=time.time()
-            elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                if main_game.snake.direction.x != -1:
-                    if time.time()-t0 >= delay_time:
-                        main_game.snake.direction =  Vector2(1, 0)
-                        t0=time.time()
-            elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                if main_game.snake.direction.x != 1:
-                    if time.time()-t0 >= delay_time:
-                        main_game.snake.direction = Vector2(-1, 0)
-                        t0=time.time()
+async def main():
 
-    screen.fill((175,215,70))
-    main_game.draw_elements()
-    pygame.display.update()
-    clock.tick(100)
+    t0=time.time()
+    while True:
+        for event in pygame.event.get(): 
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit() 
+            if event.type == SCREEN_UPDATE:
+                main_game.update()
+            if event.type == pygame.KEYDOWN: 
+                if event.key == pygame.K_UP or event.key == pygame.K_w:
+                    if main_game.snake.direction.y != 1:
+                        if time.time()-t0 >= delay_time:
+                            main_game.snake.direction = Vector2(0, -1)
+                            t0=time.time()
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                    if main_game.snake.direction.y != -1:
+                        if time.time()-t0 >= delay_time:
+                            main_game.snake.direction = Vector2(0, 1)
+                            t0=time.time()
+                elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                    if main_game.snake.direction.x != -1:
+                        if time.time()-t0 >= delay_time:
+                            main_game.snake.direction =  Vector2(1, 0)
+                            t0=time.time()
+                elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                    if main_game.snake.direction.x != 1:
+                        if time.time()-t0 >= delay_time:
+                            main_game.snake.direction = Vector2(-1, 0)
+                            t0=time.time()
+
+        screen.fill((175,215,70))
+        main_game.draw_elements()
+        pygame.display.update()
+        clock.tick(100)
+        await asyncio.sleep(0)
+
+asyncio.run(main())
