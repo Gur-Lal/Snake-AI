@@ -62,7 +62,7 @@ async def custom_site():
     import embed
 
 
-    platform.document.body.style.background = "#7f7f7f"
+    platform.document.body.style.background = "#000000"
 
     import pygame
 
@@ -169,9 +169,9 @@ async def custom_site():
 
         # now make a prompt
         fnt = pygame.sysfont.SysFont("freesans",  uy(80) )
-        prompt = fnt.render("Ready to start !", True, "blue")
+        prompt = fnt.render("Click to start!", True, "black")
         pg_bar(track.len)
-        screen.blit(prompt, ( marginx+ ux(80), marginy - uy(10) ) )
+        screen.blit(prompt, ( marginx+ ux(80), marginy - uy(-15) ) )
         compose()
         print("""
         * Waiting for media user engagement : please click/touch page *
@@ -271,7 +271,7 @@ config = {
             margin-top: 20px;
             margin-left: 30px;
             font-weight: bold;
-            color: rgb(120, 120, 120);
+            color: rgb(0, 0, 0);
         }
 
         #progress {
